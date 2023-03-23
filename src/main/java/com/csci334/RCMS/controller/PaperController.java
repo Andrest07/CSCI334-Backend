@@ -1,0 +1,36 @@
+package com.csci334.RCMS.controller;
+
+import com.csci334.RCMS.model.Paper;
+import com.csci334.RCMS.service.PaperService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class PaperController {
+    @Autowired
+    private final PaperService paperService;
+
+    public PaperController(PaperService paperService) {
+        this.paperService = paperService;
+    }
+
+    @GetMapping("/paper/{id}")
+    Paper getPaperById(@PathVariable Long id) throws Exception {
+        return paperService.getPaperById(id);
+    }
+
+    @PostMapping("/createPaper")
+    Paper createPaper(@RequestBody Paper newPaper) {
+        return paperService.createPaper(newPaper);
+    }
+
+    @PutMapping("/updatePaper/{id}")
+    Paper updatePaper(@RequestBody Paper paper, @PathVariable Long id) throws Exception {
+        return paperService.updatePaper(paper, id);
+    }
+
+    @DeleteMapping({"/deletePaper/{id}"})
+    void deletePaper(@PathVariable Long id) {
+        paperService.deletePaper(id);
+    }
+}
