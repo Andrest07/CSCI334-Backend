@@ -1,26 +1,23 @@
 package com.csci334.RCMS.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Author")
-public class Author {
+@Table(name = "Reviewer")
+public class Reviewer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;
 
-
-    //@JsonIgnoreProperties("author")
     @ManyToOne
     @JoinColumn(name = "paper_id")
     private Paper paper;
 
-    public Author() {}
+    public Reviewer() {}
 
-    public Author(long id, String name, Paper paper) {
+    public Reviewer(long id, String name, Paper paper) {
         this.id = id;
         this.name = name;
         this.paper = paper;
@@ -50,8 +47,8 @@ public class Author {
         this.paper = paper;
     }
 
-    public void setAuthor(Author author) {
-        setId(author.id);
-        setName(author.name);
+    public void setReviewer(Reviewer reviewer) {
+        setId(reviewer.id);
+        setName(reviewer.name);
     }
 }
