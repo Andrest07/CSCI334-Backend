@@ -35,4 +35,16 @@ public class AuthorService {
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
     }
+
+    public Author addAuthorPaper(Long aId, Long pId) throws Exception {
+        Author a = getAuthorById(aId);
+        return authorRepository.findById(a.getId())
+                .map(Author -> {
+                    Author.addPaperId(pId);
+                return authorRepository.save(Author);
+                }).orElseGet(() -> {
+                    a.setId(aId);
+                    return authorRepository.save(a);
+                });
+    }
 }

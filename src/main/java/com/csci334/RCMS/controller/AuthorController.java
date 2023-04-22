@@ -31,4 +31,9 @@ public class AuthorController {
     void deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
     }
+
+    @PutMapping("/addAuthorPaper/{aId}/{pId}")
+	Author putProfessionalRating(@PathVariable Long aId, @PathVariable Long pId) throws Exception {
+		return authorService.addAuthorPaper(aId, pId);
+	}
 }

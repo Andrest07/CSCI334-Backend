@@ -1,5 +1,8 @@
 package com.csci334.RCMS.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -8,7 +11,7 @@ import jakarta.persistence.*;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -16,21 +19,21 @@ public class Author {
     //@JsonIgnoreProperties("author")
     @ManyToOne
     @JoinColumn(name = "paper_id")
-    private Paper paper;
+    private List<Long> paperIds;
 
     public Author() {}
 
-    public Author(long id, String name, Paper paper) {
+    public Author(long id, String name) {
         this.id = id;
         this.name = name;
-        this.paper = paper;
+        this.paperIds = new ArrayList<>();
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,12 +45,12 @@ public class Author {
         this.name = name;
     }
 
-    public Paper getPaper() {
-        return paper;
+    public List<Long> getPaperIds() {
+        return paperIds;
     }
 
-    public void setPaper(Paper paper) {
-        this.paper = paper;
+    public void addPaperId(Long paperId) {
+        paperIds.add(paperId);
     }
 
     public void setAuthor(Author author) {

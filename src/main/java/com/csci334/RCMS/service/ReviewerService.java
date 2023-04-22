@@ -32,4 +32,16 @@ public class ReviewerService {
     public void deleteReviewer(Long id) {
         reviewerRepository.deleteById(id);
     }
+
+    public Reviewer addReviewerPaper(Long rId, Long pId) throws Exception {
+        Reviewer r = getReviewerById(rId);
+        return reviewerRepository.findById(r.getId())
+                .map(Reviewer -> {
+                    Reviewer.addPaperId(pId);
+                return reviewerRepository.save(Reviewer);
+                }).orElseGet(() -> {
+                    r.setId(rId);
+                    return reviewerRepository.save(r);
+                });
+    }
 }

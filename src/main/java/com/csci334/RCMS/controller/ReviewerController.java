@@ -33,4 +33,9 @@ public class ReviewerController {
     void deleteReviewer(@PathVariable Long id) {
         reviewerService.deleteReviewer(id);
     }
+
+    @PutMapping("/addReviewerPaper/{rId}/{pId}")
+	Reviewer putReviewerRating(@PathVariable Long rId, @PathVariable Long pId) throws Exception {
+		return reviewerService.addReviewerPaper(rId, pId);
+	}
 }

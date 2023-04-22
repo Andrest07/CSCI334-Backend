@@ -1,5 +1,7 @@
 package com.csci334.RCMS.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,14 +15,13 @@ public class Reviewer {
 
     @ManyToOne
     @JoinColumn(name = "paper_id")
-    private Paper paper;
+    private List<Long> paperIds;
 
     public Reviewer() {}
 
-    public Reviewer(long id, String name, Paper paper) {
+    public Reviewer(long id, String name) {
         this.id = id;
         this.name = name;
-        this.paper = paper;
     }
 
     public long getId() {
@@ -39,12 +40,12 @@ public class Reviewer {
         this.name = name;
     }
 
-    public Paper getPaper() {
-        return paper;
+    public List<Long> getPaperIds() {
+        return paperIds;
     }
 
-    public void setPaper(Paper paper) {
-        this.paper = paper;
+    public void addPaperId(Long paperId) {
+        paperIds.add(paperId);
     }
 
     public void setReviewer(Reviewer reviewer) {
