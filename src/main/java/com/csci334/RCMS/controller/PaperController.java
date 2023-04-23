@@ -33,4 +33,14 @@ public class PaperController {
     void deletePaper(@PathVariable Long id) {
         paperService.deletePaper(id);
     }
+
+    @PutMapping("/addPaperAuthor/{pId}/{aId}")
+	Paper putPaperAuthor(@PathVariable Long pId, @PathVariable Long aId) throws Exception {
+		return paperService.addPaperAuthor(pId, aId);
+	}
+
+    @PutMapping("/addPaperReviewer/{pId}/{rId}")
+	Paper putProfessionalRating(@PathVariable Long pId, @PathVariable Long rId) throws Exception {
+		return paperService.addPaperReviewer(pId, rId);
+	}
 }

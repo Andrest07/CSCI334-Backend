@@ -33,7 +33,7 @@ public class AuthorController {
     }
 
     @PutMapping("/addAuthorPaper/{aId}/{pId}")
-	Author putProfessionalRating(@PathVariable Long aId, @PathVariable Long pId) throws Exception {
+	Author putAuthorPaper(@PathVariable Long aId, @PathVariable Long pId) throws Exception {
 		return authorService.addAuthorPaper(aId, pId);
 	}
 }

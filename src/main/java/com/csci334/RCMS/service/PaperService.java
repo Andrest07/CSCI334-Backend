@@ -1,6 +1,8 @@
 package com.csci334.RCMS.service;
 
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.Paper;
+import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.repository.PaperRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,29 @@ public class PaperService {
 
     public void deletePaper(Long id) {
         paperRepository.deleteById(id);
+    }
+
+    public Paper addPaperAuthor(Long pId, Long aId) throws Exception {
+        Paper p = getPaperById(pId);
+        return paperRepository.findById(p.getId())
+                .map(Paper -> {
+                    Paper.addAuthorId(aId);
+                return paperRepository.save(Paper);
+                }).orElseGet(() -> {
+                    p.setId(pId);
+                    return paperRepository.save(p);
+                });
+    }
+
+    public Paper addPaperReviewer(Long pId, Long rId) throws Exception {
+        Paper p = getPaperById(pId);
+        return paperRepository.findById(p.getId())
+                .map(Paper -> {
+                    Paper.addReviewerId(rId);
+                return paperRepository.save(Paper);
+                }).orElseGet(() -> {
+                    p.setId(pId);
+                    return paperRepository.save(p);
+                });
     }
 }

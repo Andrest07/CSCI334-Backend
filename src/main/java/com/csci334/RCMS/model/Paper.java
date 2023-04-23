@@ -63,15 +63,15 @@ public class Paper {
         this.accepted = accepted;
     }
 
-    public List<Long> getAuthor(){ return authorIds; }
+    public List<Long> getAuthorIds(){ return authorIds; }
 
-    public void addAuthor(Long authorId) { authorIds.add(authorId); }
+    public void addAuthorId(Long authorId) { authorIds.add(authorId); }
 
-    public List<Long> getReviewer() {
+    public List<Long> getReviewerIds() {
         return reviewerIds;
     }
 
-    public void setReviewer(Long reviewerId) {
+    public void addReviewerId(Long reviewerId) {
         reviewerIds.add(reviewerId);
     }
 
