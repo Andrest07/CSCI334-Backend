@@ -13,8 +13,6 @@ public class Reviewer {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "paper_id")
     private List<Long> paperIds;
 
     public Reviewer() {}

@@ -17,8 +17,6 @@ public class Author {
 
 
     //@JsonIgnoreProperties("author")
-    @ManyToOne
-    @JoinColumn(name = "paper_id")
     private List<Long> paperIds;
 
     public Author() {}
