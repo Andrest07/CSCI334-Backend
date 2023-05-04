@@ -30,7 +30,7 @@ public class SystemAdminController {
     }
 
     @DeleteMapping({"/deleteSystemAdmin/{id}"})
-    void deleteSystemAdmin(@PathVariable Long id) {
+    void deleteSystemAdmin(@PathVariable Long id) throws Exception {
         systemAdminService.deleteSystemAdmin(id);
     }
 }

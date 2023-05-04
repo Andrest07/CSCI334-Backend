@@ -2,6 +2,7 @@ package com.csci334.RCMS.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -15,16 +16,19 @@ public class Author {
 
     private String name;
 
+    private String username;
 
-    //@JsonIgnoreProperties("author")
+    private String password;
+
     private List<Long> paperIds;
 
     public Author() {}
 
-    public Author(long id, String name) {
-        this.id = id;
+    public Author(String name, String username, String password) {
         this.name = name;
-        this.paperIds = new ArrayList<>();
+        this.username = username;
+        this.password = password;
+        paperIds = new ArrayList<>();
     }
 
     public long getId() {
@@ -43,16 +47,53 @@ public class Author {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public List<Long> getPaperIds() {
         return paperIds;
     }
 
-    public void addPaperId(Long paperId) {
-        paperIds.add(paperId);
+    public void addPaperId(Long newPaperId) {
+        paperIds.add(newPaperId);
     }
 
     public void setAuthor(Author author) {
         setId(author.id);
         setName(author.name);
+    }
+
+    public boolean equals(Author author) {
+        if (this == author)
+            return true;
+        return Objects.equals(this.id, author.id) 
+        && Objects.equals(this.name, author.name)
+        && Objects.equals(this.paperIds, author.paperIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name, this.paperIds);
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" + "id=" + this.id + "\'"
+        + ", name='" + this.name + "\'"
+        + ", paperIds='" + this.paperIds + "\'"
+        + "}";
     }
 }

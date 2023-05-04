@@ -1,5 +1,7 @@
 package com.csci334.RCMS.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,11 +13,16 @@ public class SystemAdmin {
 
     private String name;
 
+    private String username;
+
+    private String password;
+
     public SystemAdmin() {}
 
-    public SystemAdmin(long id, String name) {
-        this.id = id;
+    public SystemAdmin(String name, String username, String password) {
         this.name = name;
+        this.username = username;
+        this.password = password;
     }
 
     public long getId() {
@@ -37,5 +44,24 @@ public class SystemAdmin {
     public void setSystemAdmin(SystemAdmin systemAdmin) {
         setId(systemAdmin.id);
         setName(systemAdmin.name);
+    }
+
+    public boolean equals(SystemAdmin systemAdmin) {
+        if (this == systemAdmin)
+            return true;
+        return Objects.equals(this.id, systemAdmin.id) 
+        && Objects.equals(this.name, systemAdmin.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name);
+    }
+
+    @Override
+    public String toString() {
+        return "SystemAdmin{" + "id=" + this.id + "\'"
+        + ", name='" + this.name + "\'"
+        + "}";
     }
 }

@@ -30,7 +30,7 @@ public class ConferenceController {
     }
 
     @DeleteMapping({"/deleteConference/{id}"})
-    void deleteConference(@PathVariable Long id) {
+    void deleteConference(@PathVariable Long id) throws Exception {
         conferenceService.deleteConference(id);
     }
 }

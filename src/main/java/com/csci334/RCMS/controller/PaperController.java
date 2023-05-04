@@ -30,7 +30,7 @@ public class PaperController {
     }
 
     @DeleteMapping({"/deletePaper/{id}"})
-    void deletePaper(@PathVariable Long id) {
+    void deletePaper(@PathVariable Long id) throws Exception {
         paperService.deletePaper(id);
     }
 

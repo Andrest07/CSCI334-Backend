@@ -4,11 +4,16 @@ import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.Paper;
 import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.repository.PaperRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PaperService {
     private final PaperRepository paperRepository;
+
+    Logger log = LoggerFactory.getLogger(AuthorService.class);
 
     public PaperService(PaperRepository paperRepository) {
         this.paperRepository = paperRepository;
@@ -19,6 +24,7 @@ public class PaperService {
     }
 
     public Paper createPaper(Paper newPaper) {
+        log.info("Creating Paper:" + newPaper);
         return paperRepository.save(newPaper);
     }
 
@@ -28,34 +34,26 @@ public class PaperService {
             throw new Exception("Paper invalid");
         }
         foundPaper.setPaper(paper);
+        log.info("Updating Author:" + foundPaper);
         return paperRepository.save(foundPaper);
     }
 
-    public void deletePaper(Long id) {
+    public void deletePaper(Long id) throws Exception {
+        log.info("Deleting Paper:" + getPaperById(id));
         paperRepository.deleteById(id);
     }
 
     public Paper addPaperAuthor(Long pId, Long aId) throws Exception {
         Paper p = getPaperById(pId);
-        return paperRepository.findById(p.getId())
-                .map(Paper -> {
-                    Paper.addAuthorId(aId);
-                return paperRepository.save(Paper);
-                }).orElseGet(() -> {
-                    p.setId(pId);
-                    return paperRepository.save(p);
-                });
+        p.addAuthorId(aId);
+        log.info("Adding Author to Paper: " + p);
+        return paperRepository.save(p);
     }
 
     public Paper addPaperReviewer(Long pId, Long rId) throws Exception {
         Paper p = getPaperById(pId);
-        return paperRepository.findById(p.getId())
-                .map(Paper -> {
-                    Paper.addReviewerId(rId);
-                return paperRepository.save(Paper);
-                }).orElseGet(() -> {
-                    p.setId(pId);
-                    return paperRepository.save(p);
-                });
+        p.addReviewerId(rId);
+        log.info("Adding Reviewer to Paper: " + p);
+        return paperRepository.save(p);
     }
 }

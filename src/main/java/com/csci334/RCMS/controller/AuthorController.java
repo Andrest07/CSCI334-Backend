@@ -28,7 +28,7 @@ public class AuthorController {
     }
 
     @DeleteMapping({"/deleteAuthor/{id}"})
-    void deleteAuthor(@PathVariable Long id) {
+    void deleteAuthor(@PathVariable Long id) throws Exception {
         authorService.deleteAuthor(id);
     }
 

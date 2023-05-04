@@ -30,7 +30,7 @@ public class ReviewerController {
     }
 
     @DeleteMapping({"/deleteReviewer/{id}"})
-    void deleteReviewer(@PathVariable Long id) {
+    void deleteReviewer(@PathVariable Long id) throws Exception {
         reviewerService.deleteReviewer(id);
     }
 
