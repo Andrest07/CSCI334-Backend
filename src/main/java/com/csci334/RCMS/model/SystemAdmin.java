@@ -41,27 +41,50 @@ public class SystemAdmin {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setSystemAdmin(SystemAdmin systemAdmin) {
         setId(systemAdmin.id);
         setName(systemAdmin.name);
+        setUsername(systemAdmin.username);
+        setPassword(systemAdmin.password);
     }
 
     public boolean equals(SystemAdmin systemAdmin) {
         if (this == systemAdmin)
             return true;
         return Objects.equals(this.id, systemAdmin.id) 
-        && Objects.equals(this.name, systemAdmin.name);
+        && Objects.equals(this.name, systemAdmin.name)
+        && Objects.equals(this.username, systemAdmin.username)
+        && Objects.equals(this.password, systemAdmin.password)
+        ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name);
+        return Objects.hash(this.id, this.name, this.username, this.password);
     }
 
     @Override
     public String toString() {
         return "SystemAdmin{" + "id=" + this.id + "\'"
         + ", name='" + this.name + "\'"
+        + ", username='" + this.username + "\'"
+        + ", password='" + this.password + "\'"
         + "}";
     }
 }

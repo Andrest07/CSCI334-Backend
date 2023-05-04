@@ -9,11 +9,11 @@ import jakarta.persistence.*;
 public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String name;
 
-    private String chairNumber;
+    //private String chairNumber;
 
     private String username;
 
@@ -21,18 +21,18 @@ public class Conference {
 
     public Conference() {}
 
-    public Conference(String name, String chairNumber, String username, String password) {
+    public Conference(String name, String username, String password) {
         this.name = name;
-        this.chairNumber = chairNumber;
+        //this.chairNumber = chairNumber;
         this.username = username;
         this.password = password;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,13 +44,13 @@ public class Conference {
         this.name = name;
     }
 
-    public String getChairNumber() {
-        return chairNumber;
-    }
+    // public String getChairNumber() {
+    //     return chairNumber;
+    // }
 
-    public void setChairNumber(String chairNumber) {
-        this.chairNumber = chairNumber;
-    }
+    // public void setChairNumber(String chairNumber) {
+    //     this.chairNumber = chairNumber;
+    // }
 
     public String getUsername() {
         return username;
@@ -71,7 +71,9 @@ public class Conference {
     public void setConference(Conference conference) {
         setId(conference.id);
         setName(conference.name);
-        setChairNumber(conference.chairNumber);
+        // setChairNumber(conference.chairNumber);
+        setUsername(conference.username);
+        setPassword(conference.password);
     }
 
     public boolean equals(Conference conference) {
@@ -79,19 +81,24 @@ public class Conference {
             return true;
         return Objects.equals(this.id, conference.id) 
         && Objects.equals(this.name, conference.name)
-        && Objects.equals(this.chairNumber, conference.chairNumber);
+        // && Objects.equals(this.chairNumber, conference.chairNumber)
+        && Objects.equals(this.username, conference.username)
+        && Objects.equals(this.password, conference.password)
+        ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.chairNumber);
+        return Objects.hash(this.id, this.name, this.username, this.password);
     }
 
     @Override
     public String toString() {
         return "Conference{" + "id=" + this.id + "\'"
         + ", name='" + this.name + "\'"
-        + ", chairNumber='" + this.chairNumber + "\'"
+        //+ ", chairNumber='" + this.chairNumber + "\'"
+        + ", username='" + this.username + "\'"
+        + ", password='" + this.password + "\'"
         + "}";
     }
 }

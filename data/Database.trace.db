@@ -1,0 +1,6 @@
+2023-05-04 19:35:40 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Show Schemas [*]Information_schema"; SQL statement:
+Show Schemas Information_schema [42000-214]
+2023-05-04 19:36:42 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Show [*]Information_Schema"; SQL statement:
+Show Information_Schema [42000-214]

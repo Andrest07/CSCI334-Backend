@@ -2,6 +2,9 @@ package com.csci334.RCMS.controller;
 
 import com.csci334.RCMS.model.SystemAdmin;
 import com.csci334.RCMS.service.SystemAdminService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,16 @@ public class SystemAdminController {
     public SystemAdminController(SystemAdminService systemAdminService) {
         this.systemAdminService = systemAdminService;
     }
+
+    @GetMapping("/systemAdmins")
+	List<SystemAdmin> all() {
+		return systemAdminService.getSystemAdmins();
+	}
+
+	@GetMapping("/systemAdmins/ids")
+	List<Long> getSystemAdminIds(){
+		return systemAdminService.getSystemAdminIds();
+	}
 
     @GetMapping("/systemadmin/{id}")
     SystemAdmin getSystemAdminById(@PathVariable Long id) throws Exception {

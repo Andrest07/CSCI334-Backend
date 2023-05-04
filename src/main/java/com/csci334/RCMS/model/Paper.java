@@ -105,6 +105,8 @@ public class Paper {
         setRating(paper.rating);
         setComment(paper.comment);
         setAccepted(paper.accepted);
+        setUsername(paper.username);
+        setPassword(paper.password);
     }
 
     public boolean equals(Paper paper) {
@@ -113,12 +115,15 @@ public class Paper {
         return Objects.equals(this.id, paper.id) 
         && Objects.equals(this.rating, paper.rating)
         && Objects.equals(this.comment, paper.comment)
-        && Objects.equals(this.accepted, paper.accepted);
+        && Objects.equals(this.accepted, paper.accepted)
+        && Objects.equals(this.username, paper.username)
+        && Objects.equals(this.password, paper.password)
+        ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.rating, this.comment, this.accepted);
+        return Objects.hash(this.id, this.rating, this.comment, this.accepted, this.username, this.password);
     }
 
     @Override
@@ -127,6 +132,8 @@ public class Paper {
         + ", rating='" + this.rating + "\'"
         + ", comment='" + this.comment + "\'"
         + ", accepted='" + this.accepted + "\'"
+        + ", username='" + this.username + "\'"
+        + ", password='" + this.password + "\'"
         + "}";
     }
 }

@@ -2,6 +2,9 @@ package com.csci334.RCMS.controller;
 
 import com.csci334.RCMS.model.Conference;
 import com.csci334.RCMS.service.ConferenceService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,16 @@ public class ConferenceController {
     public ConferenceController(ConferenceService conferenceService) {
         this.conferenceService = conferenceService;
     }
+
+    @GetMapping("/conferences")
+	List<Conference> all() {
+		return conferenceService.getConferences();
+	}
+
+	@GetMapping("/conferences/ids")
+	List<Long> getConferenceIds(){
+		return conferenceService.getConferenceIds();
+	}
 
     @GetMapping("/conference/{id}")
     Conference getConferenceById(@PathVariable Long id) throws Exception {

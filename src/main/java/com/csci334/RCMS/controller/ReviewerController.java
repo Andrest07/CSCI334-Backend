@@ -2,6 +2,9 @@ package com.csci334.RCMS.controller;
 
 import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.service.ReviewerService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,16 @@ public class ReviewerController {
     public ReviewerController(ReviewerService reviewerService) {
         this.reviewerService = reviewerService;
     }
+
+    @GetMapping("/reviewers")
+	List<Reviewer> all() {
+		return reviewerService.getReviewers();
+	}
+
+	@GetMapping("/reviewers/ids")
+	List<Long> getReviewerIds(){
+		return reviewerService.getReviewerIds();
+	}
 
     @GetMapping("/reviewer/{id}")
     Reviewer getReviewerById(@PathVariable Long id) throws Exception {

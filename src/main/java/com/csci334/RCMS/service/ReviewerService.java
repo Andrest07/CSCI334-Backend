@@ -3,6 +3,9 @@ package com.csci334.RCMS.service;
 import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.repository.ReviewerRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,13 +20,29 @@ public class ReviewerService {
         this.reviewerRepository = reviewerRepository;
     }
 
+    public List<Reviewer> getReviewers() {
+		return reviewerRepository.findAll();
+	}
+
+	public List<Long> getReviewerIds() {
+		List<Long> ids = new ArrayList<Long>();
+		List<Reviewer> reviewers = getReviewers();
+		for(int i=0;i<reviewers.size();i++) {
+			ids.add(reviewers.get(i).getId());
+		}
+		return ids;
+	}
+
     public Reviewer getReviewerById(Long id) throws Exception{
         return reviewerRepository.findById(id).orElseThrow();
     }
 
     public Reviewer createReviewer(Reviewer newReviewer) {
-        log.info("Creating Reviewer: " + newReviewer);
-        return reviewerRepository.save(newReviewer);
+        try {
+            return reviewerRepository.save(newReviewer);
+        } finally {
+            log.info("Creating Reviewer: " + newReviewer);
+        }
     }
 
     public Reviewer updateReviewer(Reviewer reviewer, Long id) throws Exception {

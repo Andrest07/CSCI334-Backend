@@ -2,6 +2,9 @@ package com.csci334.RCMS.controller;
 
 import com.csci334.RCMS.model.Paper;
 import com.csci334.RCMS.service.PaperService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,16 @@ public class PaperController {
     public PaperController(PaperService paperService) {
         this.paperService = paperService;
     }
+
+    @GetMapping("/papers")
+	List<Paper> all() {
+		return paperService.getPapers();
+	}
+
+	@GetMapping("/papers/ids")
+	List<Long> getPaperIds(){
+		return paperService.getPaperIds();
+	}
 
     @GetMapping("/paper/{id}")
     Paper getPaperById(@PathVariable Long id) throws Exception {

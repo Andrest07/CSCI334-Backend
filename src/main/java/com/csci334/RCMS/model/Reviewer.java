@@ -73,6 +73,8 @@ public class Reviewer {
     public void setReviewer(Reviewer reviewer) {
         setId(reviewer.id);
         setName(reviewer.name);
+        setUsername(reviewer.username);
+        setPassword(reviewer.password);
     }
 
     public boolean equals(Reviewer reviewer) {
@@ -80,18 +82,22 @@ public class Reviewer {
             return true;
         return Objects.equals(this.id, reviewer.id) 
         && Objects.equals(this.name, reviewer.name)
+        && Objects.equals(this.username, reviewer.username)
+        && Objects.equals(this.password, reviewer.password)
         && Objects.equals(this.paperIds, reviewer.paperIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.paperIds);
+        return Objects.hash(this.id, this.name, this.username, this.password, this.paperIds);
     }
 
     @Override
     public String toString() {
         return "Reviewer{" + "id=" + this.id + "\'"
         + ", name='" + this.name + "\'"
+        + ", username='" + this.username + "\'"
+        + ", password='" + this.password + "\'"
         + ", paperIds='" + this.paperIds + "\'"
         + "}";
     }

@@ -2,6 +2,9 @@ package com.csci334.RCMS.controller;
 
 import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.service.AuthorService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +15,16 @@ public class AuthorController {
 
     public AuthorController(AuthorService authorService){ this.authorService = authorService; }
 
+	@GetMapping("/authors")
+	List<Author> all() {
+		return authorService.getAuthors();
+	}
+
+	@GetMapping("/authors/ids")
+	List<Long> getAuthorIds(){
+		return authorService.getAuthorIds();
+	}
+    
     @GetMapping("/author/{id}")
     Author getAuthorById(@PathVariable Long id) throws Exception {
         return authorService.getAuthorById(id);

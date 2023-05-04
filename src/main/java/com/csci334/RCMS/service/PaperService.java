@@ -5,6 +5,9 @@ import com.csci334.RCMS.model.Paper;
 import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.repository.PaperRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,13 +22,29 @@ public class PaperService {
         this.paperRepository = paperRepository;
     }
 
+    public List<Paper> getPapers() {
+		return paperRepository.findAll();
+	}
+
+	public List<Long> getPaperIds() {
+		List<Long> ids = new ArrayList<Long>();
+		List<Paper> papers = getPapers();
+		for(int i=0;i<papers.size();i++) {
+			ids.add(papers.get(i).getId());
+		}
+		return ids;
+	}
+
     public Paper getPaperById(Long id) throws Exception{
         return paperRepository.findById(id).orElseThrow();
     }
 
     public Paper createPaper(Paper newPaper) {
-        log.info("Creating Paper:" + newPaper);
-        return paperRepository.save(newPaper);
+        try {
+            return paperRepository.save(newPaper);
+        } finally {
+            log.info("Creating Paper:" + newPaper);
+        }
     }
 
     public Paper updatePaper(Paper paper, Long id) throws Exception {

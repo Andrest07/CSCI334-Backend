@@ -3,6 +3,9 @@ package com.csci334.RCMS.service;
 import com.csci334.RCMS.model.SystemAdmin;
 import com.csci334.RCMS.repository.SystemAdminRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,13 +21,29 @@ public class SystemAdminService {
         this.systemAdminRepository = systemAdminRepository;
     }
 
+    public List<SystemAdmin> getSystemAdmins() {
+		return systemAdminRepository.findAll();
+	}
+
+	public List<Long> getSystemAdminIds() {
+		List<Long> ids = new ArrayList<Long>();
+		List<SystemAdmin> systemAdmins = getSystemAdmins();
+		for(int i=0;i<systemAdmins.size();i++) {
+			ids.add(systemAdmins.get(i).getId());
+		}
+		return ids;
+	}
+
     public SystemAdmin getSystemAdminById(Long id) throws Exception{
         return systemAdminRepository.findById(id).orElseThrow();
     }
 
     public SystemAdmin createSystemAdmin(SystemAdmin newSystemAdmin) {
-        log.info("Creating SystemAdmin: " + newSystemAdmin);
-        return systemAdminRepository.save(newSystemAdmin);
+        try {
+            return systemAdminRepository.save(newSystemAdmin);
+        } finally {
+            log.info("Creating SystemAdmin: " + newSystemAdmin);
+        }
     }
 
     public SystemAdmin updateSystemAdmin(SystemAdmin systemAdmin, Long id) throws Exception {

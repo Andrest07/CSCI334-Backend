@@ -74,6 +74,8 @@ public class Author {
     public void setAuthor(Author author) {
         setId(author.id);
         setName(author.name);
+        setUsername(author.username);
+        setPassword(author.password);
     }
 
     public boolean equals(Author author) {
@@ -81,18 +83,22 @@ public class Author {
             return true;
         return Objects.equals(this.id, author.id) 
         && Objects.equals(this.name, author.name)
+        && Objects.equals(this.username, author.username)
+        && Objects.equals(this.password, author.password)
         && Objects.equals(this.paperIds, author.paperIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.paperIds);
+        return Objects.hash(this.id, this.name, this.username, this.password, this.paperIds);
     }
 
     @Override
     public String toString() {
         return "Author{" + "id=" + this.id + "\'"
         + ", name='" + this.name + "\'"
+        + ", username='" + this.username + "\'"
+        + ", password='" + this.password + "\'"
         + ", paperIds='" + this.paperIds + "\'"
         + "}";
     }
