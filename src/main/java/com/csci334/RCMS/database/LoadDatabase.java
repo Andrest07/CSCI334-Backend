@@ -56,75 +56,75 @@ class LoadDatabase {
         Faker faker = new Faker();
         
         return args -> {
-            String fullName;
-            String lorem;
-            String username;
-            String password;
+             String fullName;
+             String lorem;
+             String username;
+             String password;
 
-            // aService.createAuthor(new Author("Andreas", "ast", "123"));
-            // pService.createPaper(new Paper(5, "Poggers", true, "p", "p"));
-            // aService.addAuthorPaper(1L,1L);
+             // aService.createAuthor(new Author("Andreas", "ast", "123"));
+             // pService.createPaper(new Paper(5, "Poggers", true, "p", "p"));
+             // aService.addAuthorPaper(1L,1L);
 
-            for (int i = 0; i < 100; i++) {
-                fullName = faker.name().fullName();
-                username = faker.name().username();
-                password = faker.internet().password();
-                aService.createAuthor(new Author(fullName, username, password));
-            }
+             for (int i = 0; i < 100; i++) {
+                 fullName = faker.name().fullName();
+                 username = faker.name().username();
+                 password = faker.internet().password();
+                 aService.createAuthor(new Author(fullName, username, password));
+             }
 
-            for (int i = 0; i < 100; i++) {
-                lorem = faker.lorem().sentence(1, 5);
-                username = faker.name().username();
-                password = faker.internet().password();
-                pService.createPaper(new Paper(random.nextInt(0, 5), lorem, random.nextBoolean(), username, password));
-            }
+             for (int i = 0; i < 100; i++) {
+                 lorem = faker.lorem().sentence(1, 5);
+                 username = faker.name().username();
+                 password = faker.internet().password();
+                 pService.createPaper(new Paper(random.nextInt(0, 5), lorem, random.nextBoolean(), username, password));
+             }
 
-            for (int i = 0; i < 100; i++) {
-                fullName = faker.name().fullName();
-                username = faker.name().username();
-                password = faker.internet().password();
-                cService.createConference(new Conference(fullName, username, password));
-            }
+             for (int i = 0; i < 100; i++) {
+                 fullName = faker.name().fullName();
+                 username = faker.name().username();
+                 password = faker.internet().password();
+                 cService.createConference(new Conference(fullName, username, password));
+             }
 
-            for (int i = 0; i < 100; i++) {
-                fullName = faker.name().fullName();
-                username = faker.name().username();
-                password = faker.internet().password();
-                rService.createReviewer(new Reviewer(fullName, username, password));
-            }
+             for (int i = 0; i < 100; i++) {
+                 fullName = faker.name().fullName();
+                 username = faker.name().username();
+                 password = faker.internet().password();
+                 rService.createReviewer(new Reviewer(fullName, username, password));
+             }
 
-            for (int i = 0; i < 100; i++) {
-                fullName = faker.name().fullName();
-                username = faker.name().username();
-                password = faker.internet().password();
-                saService.createSystemAdmin(new SystemAdmin(fullName, username, password));
-            }
+             for (int i = 0; i < 100; i++) {
+                 fullName = faker.name().fullName();
+                 username = faker.name().username();
+                 password = faker.internet().password();
+                 saService.createSystemAdmin(new SystemAdmin(fullName, username, password));
+             }
 
-            List<Long> paperIds = pService.getPaperIds();
-            for (int i = 1; i < paperIds.size() + 1; i++) {
-                Integer randMax;
-                List<Long> authorIds = aService.getAuthorIds();
-                randMax = authorIds.size();
-                Long randAuthor;
-                if (randMax > 0) {
-                    randAuthor = authorIds.get(random.nextInt(randMax));
-                } else {
-                    randAuthor = authorIds.get(randMax);
-                }
+             List<Long> paperIds = pService.getPaperIds();
+             for (int i = 1; i < paperIds.size() + 1; i++) {
+                 Integer randMax;
+                 List<Long> authorIds = aService.getAuthorIds();
+                 randMax = authorIds.size();
+                 Long randAuthor;
+                 if (randMax > 0) {
+                     randAuthor = authorIds.get(random.nextInt(randMax));
+                 } else {
+                     randAuthor = authorIds.get(randMax);
+                 }
 
-                List<Long> reviewerIds = rService.getReviewerIds();
-                randMax = reviewerIds.size();
-                Long randReviewer;
-                if (randMax > 0) {
-                    randReviewer = reviewerIds.get(random.nextInt(randMax));
-                } else {
-                    randReviewer = reviewerIds.get(randMax);
-                }
-                pService.addPaperAuthor(Long.valueOf(i), randAuthor);
-                pService.addPaperReviewer(Long.valueOf(i), randReviewer);
-                aService.addAuthorPaper(randAuthor, Long.valueOf(i));
-                rService.addReviewerPaper(randReviewer, Long.valueOf(i));
-            }
+                 List<Long> reviewerIds = rService.getReviewerIds();
+                 randMax = reviewerIds.size();
+                 Long randReviewer;
+                 if (randMax > 0) {
+                     randReviewer = reviewerIds.get(random.nextInt(randMax));
+                 } else {
+                     randReviewer = reviewerIds.get(randMax);
+                 }
+                 pService.addPaperAuthor(Long.valueOf(i), randAuthor);
+                 pService.addPaperReviewer(Long.valueOf(i), randReviewer);
+                 aService.addAuthorPaper(randAuthor, Long.valueOf(i));
+                 rService.addReviewerPaper(randReviewer, Long.valueOf(i));
+             }
         };
     }
 }

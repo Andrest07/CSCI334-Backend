@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class AuthorController {
     @Autowired
@@ -28,6 +29,16 @@ public class AuthorController {
     @GetMapping("/author/{id}")
     Author getAuthorById(@PathVariable Long id) throws Exception {
         return authorService.getAuthorById(id);
+    }
+
+    @GetMapping("/author/findAuthorUsername/{username}")
+    Author getAuthorFindUsername(@PathVariable String username) throws Exception {
+        return authorService.getAuthorFindUsername(username);
+    }
+
+    @GetMapping("/author/findAuthorPassword/{password}")
+    Author getAuthorFindPassword(@PathVariable String password) throws Exception {
+        return authorService.getAuthorFindPassword(password);
     }
 
     @PostMapping("/createAuthor")
