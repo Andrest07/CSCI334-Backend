@@ -15,7 +15,7 @@ public class SystemAdminService {
     
     private final SystemAdminRepository systemAdminRepository;
 
-    Logger log = LoggerFactory.getLogger(AuthorService.class);
+    Logger log = LoggerFactory.getLogger(SystemAdminService.class);
 
     public SystemAdminService(SystemAdminRepository systemAdminRepository) {
         this.systemAdminRepository = systemAdminRepository;

@@ -63,5 +63,4 @@ public class ConferenceService {
         conferenceRepository.deleteById(id);
     }
 
-
 }

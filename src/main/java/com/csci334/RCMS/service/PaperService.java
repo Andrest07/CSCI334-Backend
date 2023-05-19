@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class PaperService {
     private final PaperRepository paperRepository;
 
-    Logger log = LoggerFactory.getLogger(AuthorService.class);
+    Logger log = LoggerFactory.getLogger(PaperService.class);
 
     public PaperService(PaperRepository paperRepository) {
         this.paperRepository = paperRepository;
