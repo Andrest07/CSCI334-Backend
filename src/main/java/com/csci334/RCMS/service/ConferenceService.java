@@ -1,5 +1,7 @@
 package com.csci334.RCMS.service;
 
+import com.csci334.RCMS.exceptions.CustomException;
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.Conference;
 import com.csci334.RCMS.model.Conference;
 import com.csci334.RCMS.repository.ConferenceRepository;
@@ -10,6 +12,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 public class ConferenceService {
@@ -56,6 +59,22 @@ public class ConferenceService {
         foundConference.setConference(conference);
         log.info("Updating Conference: " + foundConference);
         return conferenceRepository.save(foundConference);
+    }
+
+    public Conference getConferenceFindUsername(String username) throws Exception{
+        if(conferenceRepository.findByUsername(username).isPresent()) {
+            return conferenceRepository.findByUsername(username).orElseThrow(() -> new Exception("Cannot find username"));
+        }else{
+            throw new CustomException("Incorrect Username or Password");
+        }
+    }
+
+    public Conference getConferenceFindPassword(String password) throws Exception{
+        if(conferenceRepository.findByPassword(password).isPresent()) {
+            return conferenceRepository.findByPassword(password).orElseThrow(() -> new Exception("Cannot find password"));
+        }else{
+            throw new CustomException("Incorrect Username or Password");
+        }
     }
 
     public void deleteConference(Long id) throws Exception {

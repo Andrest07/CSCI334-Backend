@@ -1,5 +1,6 @@
 package com.csci334.RCMS.controller;
 
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.service.ReviewerService;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class ReviewerController {
     @Autowired
@@ -30,6 +32,16 @@ public class ReviewerController {
     @GetMapping("/reviewer/{id}")
     Reviewer getReviewerById(@PathVariable Long id) throws Exception {
         return reviewerService.getReviewerById(id);
+    }
+
+    @GetMapping("/reviewer/findReviewerUsername/{username}")
+    Reviewer getAuthorFindUsername(@PathVariable String username) throws Exception {
+        return reviewerService.getReviewerFindUsername(username);
+    }
+
+    @GetMapping("/author/findReviewerPassword/{password}")
+    Reviewer getReviewerFindPassword(@PathVariable String password) throws Exception {
+        return reviewerService.getReviewerFindPassword(password);
     }
 
     @PostMapping("/createReviewer")

@@ -1,5 +1,7 @@
 package com.csci334.RCMS.service;
 
+import com.csci334.RCMS.exceptions.CustomException;
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.SystemAdmin;
 import com.csci334.RCMS.repository.SystemAdminRepository;
 
@@ -54,6 +56,22 @@ public class SystemAdminService {
         foundSystemAdmin.setSystemAdmin(systemAdmin);
         log.info("Updating SystemAdmin: " + foundSystemAdmin);
         return systemAdminRepository.save(foundSystemAdmin);
+    }
+
+    public SystemAdmin getSystemAdminFindUsername(String username) throws Exception{
+        if(systemAdminRepository.findByUsername(username).isPresent()) {
+            return systemAdminRepository.findByUsername(username).orElseThrow(() -> new Exception("Cannot find username"));
+        }else{
+            throw new CustomException("Incorrect Username or Password");
+        }
+    }
+
+    public SystemAdmin getSystemAdminFindPassword(String password) throws Exception{
+        if(systemAdminRepository.findByPassword(password).isPresent()) {
+            return systemAdminRepository.findByPassword(password).orElseThrow(() -> new Exception("Cannot find password"));
+        }else{
+            throw new CustomException("Incorrect Username or Password");
+        }
     }
 
     public void deleteSystemAdmin(Long id) throws Exception {

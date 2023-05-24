@@ -1,5 +1,7 @@
 package com.csci334.RCMS.service;
 
+import com.csci334.RCMS.exceptions.CustomException;
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.Reviewer;
 import com.csci334.RCMS.repository.ReviewerRepository;
 
@@ -53,6 +55,22 @@ public class ReviewerService {
         foundReviewer.setReviewer(reviewer);
         log.info("Updating Reviewer: " + foundReviewer);
         return reviewerRepository.save(foundReviewer);
+    }
+
+    public Reviewer getReviewerFindUsername(String username) throws Exception{
+        if(reviewerRepository.findByUsername(username).isPresent()) {
+            return reviewerRepository.findByUsername(username).orElseThrow(() -> new Exception("Cannot find username"));
+        }else{
+            throw new CustomException("Incorrect Username or Password");
+        }
+    }
+
+    public Reviewer getReviewerFindPassword(String password) throws Exception{
+        if(reviewerRepository.findByPassword(password).isPresent()) {
+            return reviewerRepository.findByPassword(password).orElseThrow(() -> new Exception("Cannot find password"));
+        }else{
+            throw new CustomException("Incorrect Username or Password");
+        }
     }
 
     public void deleteReviewer(Long id) throws Exception {

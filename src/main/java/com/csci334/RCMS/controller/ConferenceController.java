@@ -1,5 +1,6 @@
 package com.csci334.RCMS.controller;
 
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.Conference;
 import com.csci334.RCMS.service.ConferenceService;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class ConferenceController {
     @Autowired
@@ -30,6 +32,16 @@ public class ConferenceController {
     @GetMapping("/conference/{id}")
     Conference getConferenceById(@PathVariable Long id) throws Exception {
         return conferenceService.getConferenceById(id);
+    }
+
+    @GetMapping("/conference/findConferenceUsername/{username}")
+    Conference getConferenceFindUsername(@PathVariable String username) throws Exception {
+        return conferenceService.getConferenceFindUsername(username);
+    }
+
+    @GetMapping("/conference/findConferencePassword/{password}")
+    Conference getConferenceFindPassword(@PathVariable String password) throws Exception {
+        return conferenceService.getConferenceFindPassword(password);
     }
 
     @PostMapping("/createConference")

@@ -1,5 +1,6 @@
 package com.csci334.RCMS.controller;
 
+import com.csci334.RCMS.model.Author;
 import com.csci334.RCMS.model.SystemAdmin;
 import com.csci334.RCMS.service.SystemAdminService;
 
@@ -31,6 +32,16 @@ public class SystemAdminController {
     @GetMapping("/systemadmin/{id}")
     SystemAdmin getSystemAdminById(@PathVariable Long id) throws Exception {
         return systemAdminService.getSystemAdminById(id);
+    }
+
+    @GetMapping("/systemadmin/findSystemAdminUsername/{username}")
+    SystemAdmin getSystemAdminFindUsername(@PathVariable String username) throws Exception {
+        return systemAdminService.getSystemAdminFindUsername(username);
+    }
+
+    @GetMapping("/systemadmin/findSystemAdminPassword/{password}")
+    SystemAdmin getSystemAdminFindPassword(@PathVariable String password) throws Exception {
+        return systemAdminService.getSystemAdminFindPassword(password);
     }
 
     @PostMapping("/createSystemAdmin")
