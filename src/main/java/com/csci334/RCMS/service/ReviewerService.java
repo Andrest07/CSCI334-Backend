@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class ReviewerService {
     private final ReviewerRepository reviewerRepository;
 
-    Logger log = LoggerFactory.getLogger(AuthorService.class);
+    Logger log = LoggerFactory.getLogger(ReviewerService.class);
 
     public ReviewerService(ReviewerRepository reviewerRepository) {
         this.reviewerRepository = reviewerRepository;

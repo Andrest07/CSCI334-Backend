@@ -65,40 +65,39 @@ class LoadDatabase {
              // pService.createPaper(new Paper(5, "Poggers", true, "p", "p"));
              // aService.addAuthorPaper(1L,1L);
 
-             for (int i = 0; i < 100; i++) {
-                 fullName = faker.name().fullName();
-                 username = faker.name().username();
-                 password = faker.internet().password();
-                 aService.createAuthor(new Author(fullName, username, password));
-             }
+            Integer data = 1;
+            for (int i = 0; i < data; i++) {
+                fullName = faker.name().fullName();
+                username = faker.name().username();
+                password = faker.internet().password();
+                aService.createAuthor(new Author(fullName, username, password));
+            }
 
-             for (int i = 0; i < 100; i++) {
-                 lorem = faker.lorem().sentence(1, 5);
-                 username = faker.name().username();
-                 password = faker.internet().password();
-                 pService.createPaper(new Paper(random.nextInt(0, 5), lorem, random.nextBoolean(), username, password));
-             }
+            for (int i = 0; i < data; i++) {
+                //lorem = faker.lorem().sentence(1, 5);
+                pService.createPaper(new Paper(random.nextInt(0, 5), random.nextBoolean()));
+            }
 
-             for (int i = 0; i < 100; i++) {
-                 fullName = faker.name().fullName();
-                 username = faker.name().username();
-                 password = faker.internet().password();
-                 cService.createConference(new Conference(fullName, username, password));
-             }
+            for (int i = 0; i < data; i++) {
+                fullName = faker.name().fullName();
+                username = faker.name().username();
+                password = faker.internet().password();
+                cService.createConference(new Conference(fullName, username, password));
+            }
 
-             for (int i = 0; i < 100; i++) {
-                 fullName = faker.name().fullName();
-                 username = faker.name().username();
-                 password = faker.internet().password();
-                 rService.createReviewer(new Reviewer(fullName, username, password));
-             }
+            for (int i = 0; i < data; i++) {
+                fullName = faker.name().fullName();
+                username = faker.name().username();
+                password = faker.internet().password();
+                rService.createReviewer(new Reviewer(fullName, username, password));
+            }
 
-             for (int i = 0; i < 100; i++) {
-                 fullName = faker.name().fullName();
-                 username = faker.name().username();
-                 password = faker.internet().password();
-                 saService.createSystemAdmin(new SystemAdmin(fullName, username, password));
-             }
+            for (int i = 0; i < data; i++) {
+                fullName = faker.name().fullName();
+                username = faker.name().username();
+                password = faker.internet().password();
+                saService.createSystemAdmin(new SystemAdmin(fullName, username, password));
+            }
 
              List<Long> paperIds = pService.getPaperIds();
              for (int i = 1; i < paperIds.size() + 1; i++) {
