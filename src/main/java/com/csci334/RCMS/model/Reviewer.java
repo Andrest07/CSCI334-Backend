@@ -19,14 +19,17 @@ public class Reviewer {
 
     private String password;
 
+    private Integer bids;
+
     private List<Long> paperIds;
 
     public Reviewer() {}
 
-    public Reviewer(String name, String username, String password) {
+    public Reviewer(String name, String username, String password, Integer bids) {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.bids = bids;
         paperIds = new ArrayList<Long>();
     }
 
@@ -62,6 +65,14 @@ public class Reviewer {
         this.password = password;
     }
 
+    public Integer getBids() {
+        return bids;
+    }
+
+    public void setBids(Integer bids) {
+        this.bids = bids;
+    }
+
     public List<Long> getPaperIds() {
         return paperIds;
     }
@@ -75,6 +86,7 @@ public class Reviewer {
         setName(reviewer.name);
         setUsername(reviewer.username);
         setPassword(reviewer.password);
+        setBids(reviewer.bids);
     }
 
     public boolean equals(Reviewer reviewer) {
@@ -84,12 +96,13 @@ public class Reviewer {
         && Objects.equals(this.name, reviewer.name)
         && Objects.equals(this.username, reviewer.username)
         && Objects.equals(this.password, reviewer.password)
+        && Objects.equals(this.bids, reviewer.bids)
         && Objects.equals(this.paperIds, reviewer.paperIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.username, this.password, this.paperIds);
+        return Objects.hash(this.id, this.name, this.username, this.password, this.bids, this.paperIds);
     }
 
     @Override
@@ -98,6 +111,7 @@ public class Reviewer {
         + ", name='" + this.name + "\'"
         + ", username='" + this.username + "\'"
         + ", password='" + this.password + "\'"
+        + ", bids='" + this.bids + "\'"
         + ", paperIds='" + this.paperIds + "\'"
         + "}";
     }

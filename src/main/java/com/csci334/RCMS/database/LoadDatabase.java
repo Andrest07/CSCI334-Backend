@@ -75,7 +75,7 @@ class LoadDatabase {
 
             for (int i = 0; i < data; i++) {
                 //lorem = faker.lorem().sentence(1, 5);
-                pService.createPaper(new Paper(random.nextInt(0, 5), random.nextBoolean()));
+                pService.createPaper(new Paper(random.nextInt(0, 5), random.nextBoolean(), random.nextBoolean()));
             }
 
             for (int i = 0; i < data; i++) {
@@ -89,7 +89,7 @@ class LoadDatabase {
                 fullName = faker.name().fullName();
                 username = faker.name().username();
                 password = faker.internet().password();
-                rService.createReviewer(new Reviewer(fullName, username, password));
+                rService.createReviewer(new Reviewer(fullName, username, password, random.nextInt(0, 5)));
             }
 
             for (int i = 0; i < data; i++) {
@@ -124,6 +124,10 @@ class LoadDatabase {
                  aService.addAuthorPaper(randAuthor, Long.valueOf(i));
                  rService.addReviewerPaper(randReviewer, Long.valueOf(i));
              }
+             aService.createAuthor(new Author("Test Author", "TestAuthor", "111"));
+            cService.createConference(new Conference("Test Conference Chair", "TestConference", "222"));
+            rService.createReviewer(new Reviewer("Test Reviewer", "TestReviewer", "333", random.nextInt(0, 5)));
+            saService.createSystemAdmin(new SystemAdmin("Test System Admin", "TestSA", "444"));
         };
     }
 }

@@ -18,15 +18,21 @@ public class Paper {
 
     private boolean accepted;
 
+    private boolean liked;
+
     //@JsonIgnoreProperties("paper")
+    private List<String> comments;
+
     private List<Long> authorIds;
 
     private List<Long> reviewerIds;
     public Paper() {}
 
-    public Paper(int rating, boolean accepted) {
+    public Paper(int rating, boolean accepted, boolean liked) {
         this.rating = rating;
         this.accepted = accepted;
+        this.liked = liked;
+        this.comments = new ArrayList<>();
         this.authorIds = new ArrayList<>();
         this.reviewerIds = new ArrayList<>();
     }
@@ -55,6 +61,22 @@ public class Paper {
         this.accepted = accepted;
     }
 
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
+    public List<String> getComments(){ 
+        return comments; 
+    }
+
+    public void addComment(String comment) { 
+        comments.add(comment); 
+    }
+
     public List<Long> getAuthorIds(){ return authorIds; }
 
     public void addAuthorId(Long authorId) { authorIds.add(authorId); }
@@ -71,6 +93,7 @@ public class Paper {
         setId(paper.id);
         setRating(paper.rating);
         setAccepted(paper.accepted);
+        setLiked(paper.liked);
     }
 
     public boolean equals(Paper paper) {
@@ -79,12 +102,16 @@ public class Paper {
         return Objects.equals(this.id, paper.id) 
         && Objects.equals(this.rating, paper.rating)
         && Objects.equals(this.accepted, paper.accepted)
+        && Objects.equals(this.liked, paper.liked)
+        && Objects.equals(this.comments, paper.comments)
+        && Objects.equals(this.authorIds, paper.authorIds)
+        && Objects.equals(this.reviewerIds, paper.reviewerIds)
         ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.rating, this.accepted);
+        return Objects.hash(this.id, this.rating, this.accepted, this.liked, this.comments, this.authorIds, this.reviewerIds);
     }
 
     @Override
@@ -92,6 +119,10 @@ public class Paper {
         return "Paper{" + "id=" + this.id + "\'"
         + ", rating='" + this.rating + "\'"
         + ", accepted='" + this.accepted + "\'"
+        + ", liked='" + this.liked + "\'"
+        + ", comments='" + this.comments + "\'"
+        + ", authorIds='" + this.authorIds + "\'"
+        + ", reviewerIds='" + this.reviewerIds + "\'"
         + "}";
     }
 }

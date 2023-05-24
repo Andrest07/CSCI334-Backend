@@ -53,13 +53,13 @@ public class BidController {
         bidService.deleteBid(id);
     }
 
-    @PutMapping("/addBidPaper/{rId}/{aId}")
-	Bid putBidPaper(@PathVariable Long rId, @PathVariable Long pId) throws Exception {
-		return bidService.addBidPaper(rId, pId);
+    @PutMapping("/addBidPaper/{bId}/{pId}")
+	Bid putBidPaper(@PathVariable Long bId, @PathVariable Long pId) throws Exception {
+		return bidService.addBidPaper(bId, pId);
 	}
 
-    @PutMapping("/addBidReviewer/{rId}/{rId}")
-	Bid putProfessionalRating(@PathVariable Long rId, @PathVariable Long rrId) throws Exception {
-		return bidService.addBidReviewer(rId, rrId);
+    @PutMapping("/addBidReviewer/{bId}/{rId}")
+	Bid putBidReviewer(@PathVariable Long bId, @PathVariable Long rId) throws Exception {
+		return bidService.addBidReviewer(bId, rId);
 	}
 }

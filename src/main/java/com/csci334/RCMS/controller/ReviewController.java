@@ -53,12 +53,12 @@ public class ReviewController {
         reviewService.deleteReview(id);
     }
 
-    @PutMapping("/addReviewPaper/{rId}/{aId}")
+    @PutMapping("/addReviewPaper/{rId}/{pId}")
 	Review putReviewPaper(@PathVariable Long rId, @PathVariable Long pId) throws Exception {
 		return reviewService.addReviewPaper(rId, pId);
 	}
 
-    @PutMapping("/addReviewReviewer/{rId}/{rId}")
+    @PutMapping("/addReviewReviewer/{rId}/{rrId}")
 	Review putProfessionalRating(@PathVariable Long rId, @PathVariable Long rrId) throws Exception {
 		return reviewService.addReviewReviewer(rId, rrId);
 	}

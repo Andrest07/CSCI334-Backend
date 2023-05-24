@@ -19,7 +19,7 @@ public class Review {
 
     private int rating;
 
-    private String comment;
+    private List<String> comments;
 
     //@JsonIgnoreProperties("paper")
     private List<Long> paperIds;
@@ -27,9 +27,9 @@ public class Review {
     private List<Long> reviewerIds;
     public Review() {}
 
-    public Review(int rating, String comment) {
+    public Review(int rating) {
         this.rating = rating;
-        this.comment = comment;
+        this.comments = new ArrayList<>();
         this.paperIds = new ArrayList<>();
         this.reviewerIds = new ArrayList<>();
     }
@@ -50,13 +50,14 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getComment() {
-        return comment;
+    public List<String> getComments(){ 
+        return comments; 
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void addComment(String comment) { 
+        comments.add(comment); 
     }
+
 
     public List<Long> getPaperIds(){ 
         return paperIds; 
@@ -77,7 +78,6 @@ public class Review {
     public void setReview(Review review){
         setId(review.id);
         setRating(review.rating);
-        setComment(review.comment);
     }
 
     public boolean equals(Review review) {
@@ -85,7 +85,7 @@ public class Review {
             return true;
         return Objects.equals(this.id, review.id) 
         && Objects.equals(this.rating, review.rating)
-        && Objects.equals(this.comment, review.comment)
+        && Objects.equals(this.comments, review.comments)
         && Objects.equals(this.paperIds, review.paperIds)
         && Objects.equals(this.reviewerIds, review.reviewerIds)
         ;
@@ -93,14 +93,14 @@ public class Review {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.rating, this.comment,this.paperIds, this.reviewerIds);
+        return Objects.hash(this.id, this.rating, this.comments,this.paperIds, this.reviewerIds);
     }
 
     @Override
     public String toString() {
         return "Review{" + "id=" + this.id + "\'"
         + ", rating='" + this.rating + "\'"
-        + ", comment='" + this.comment + "\'"
+        + ", comments='" + this.comments + "\'"
         + ", paperIds='" + this.paperIds + "\'"
         + ", reviewerIds='" + this.reviewerIds + "\'"
         + "}";
