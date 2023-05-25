@@ -65,7 +65,7 @@ class LoadDatabase {
              // pService.createPaper(new Paper(5, "Poggers", true, "p", "p"));
              // aService.addAuthorPaper(1L,1L);
 
-            Integer data = 1;
+            Integer data = 100;
             for (int i = 0; i < data; i++) {
                 fullName = faker.name().fullName();
                 username = faker.name().username();

@@ -2,6 +2,7 @@ package com.csci334.RCMS.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.Objects;
 @Table(name = "Paper")
 public class Paper {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     private int rating;
 
@@ -73,7 +74,11 @@ public class Paper {
         return comments; 
     }
 
-    public void addComment(String comment) { 
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
+    public void addComment(String comment) {
         comments.add(comment); 
     }
 
@@ -89,11 +94,21 @@ public class Paper {
         reviewerIds.add(reviewerId);
     }
 
+    public void setAuthorIds(List<Long> authorIds) {
+        this.authorIds = authorIds;
+    }
+
+    public void setReviewerIds(List<Long> reviewerIds) {
+        this.reviewerIds = reviewerIds;
+    }
+
     public void setPaper(Paper paper){
         setId(paper.id);
         setRating(paper.rating);
         setAccepted(paper.accepted);
         setLiked(paper.liked);
+        setComments(paper.comments);
+        setAuthorIds(paper.authorIds);
     }
 
     public boolean equals(Paper paper) {

@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "Bid")
 public class Bid {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     //@JsonIgnoreProperties("paper")

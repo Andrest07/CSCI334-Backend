@@ -54,7 +54,8 @@ public class PaperService {
         }
         foundPaper.setPaper(paper);
         log.info("Updating Author:" + foundPaper);
-        return paperRepository.save(foundPaper);
+        Paper paper2 = paperRepository.save(foundPaper);
+        return paper2;
     }
 
     public void deletePaper(Long id) throws Exception {
