@@ -3,12 +3,22 @@ package com.csci334.RCMS.model;
 import java.util.Objects;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "System Admin")
 public class SystemAdmin {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGen5")
+    @GenericGenerator(
+            name = "idGen5",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = "sequence_name5", value = "your_entity_sequence5"),
+                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "0"),
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+            }
+    )
     private long id;
 
     private String name;

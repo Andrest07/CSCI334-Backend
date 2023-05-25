@@ -5,12 +5,22 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Reviewer")
 public class Reviewer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGen4")
+    @GenericGenerator(
+            name = "idGen4",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = "sequence_name4", value = "your_entity_sequence4"),
+                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "0"),
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+            }
+    )
     private long id;
 
     private String name;
